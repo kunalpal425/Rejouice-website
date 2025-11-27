@@ -2,10 +2,12 @@
     font-family: nb;
     src: url(./fonts/NBInternationalProBoo.ttf);
 }
+
 @font-face {
     font-family: rejouice;
     src: url(./fonts/Rejouice-Headline.ttf);
 }
+
 * {
     padding: 0;
     margin: 0;
@@ -13,35 +15,47 @@
     font-family: nb;
 }
 
+body {
+    overflow-x: hidden;
+}
+
+.main {
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* ========== HERO ========== */
+
 .main-content {
     width: 100%;
     height: 100vh;
     background-color: antiquewhite;
     position: relative;
+    overflow: hidden;
 }
 
 .main-content video {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     object-fit: cover;
     position: absolute;
     top: 0;
     left: 0;
 }
 
+/* NAV (unified) */
 nav {
     position: absolute;
     top: 0;
     left: 0;
-
     width: 100%;
-    padding: 2vw 3vw;
-
+    padding: 30px 27px;
     display: flex;
-    align-items: center;
+    font-size: 21px;
     justify-content: space-between;
-
-    z-index: 10; /* makes the nav appear above the video */
+    align-items: center;
+    background: transparent;
+    z-index: 10;
 }
 
 nav h3 {
@@ -49,30 +63,94 @@ nav h3 {
     font-weight: 500;
     letter-spacing: 1px;
 }
+
+.menu-wrapper {
+    position: relative;
+}
+
+#slide-bar {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: 220px;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    background: #111;
+    color: #fff;
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+
+    transform-origin: top right;
+    transform: translateY(-8px) scaleY(0.96);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform .26s cubic-bezier(.2, .9, .3, 1), opacity .26s;
+}
+
+.menu {
+    cursor: pointer;
+}
+
+.menu-wrapper:active #slide-bar,
+.menu-wrapper:focus-within #slide-bar {
+    transform: translateY(0) scaleY(1);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#slide-bar h2 {
+    font-size: 18px;
+    margin: 4px 0 12px;
+    font-family: rejouice;
+    font-weight: 400;
+}
+
+.header-left {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.header-left a {
+    color: #fff;
+    text-decoration: none;
+    padding: 6px 8px;
+    border-radius: 6px;
+}
+
+.header-left a:hover {
+    background: rgba(255, 255, 255, 0.04);
+    color: #ff5a3c;
+}
+
+/* HERO TITLE */
+
 .main-content h1 {
     position: absolute;
-    bottom: 10px;            /* distance from bottom */
+    bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
-    
     z-index: 10;
     color: white;
     display: flex;
-    gap: 0.2vw;      
-    font-weight: 100;       /* spacing between letters */
+    gap: 0.2vw;
+    font-weight: 100;
 }
 
 .main-content h1 span {
-    display: flex;
     display: inline-block;
     font-size: 26vw;
     font-family: rejouice;
     line-height: 27vw;
 }
+
+/* CURSOR CIRCLE */
+
 .circle {
     width: 80px;
     height: 80px;
-    background: #ff5a3c;   /* circle color */
+    background: #ff5a3c;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -82,176 +160,216 @@ nav h3 {
     color: black;
     z-index: 2;
     position: absolute;
-    transform: translate(-50%,-50%);
-  }
+    pointer-events: none;
+}
 
-#page-2{
+/* ========== PAGE 2 ========== */
+
+#page-2 {
     width: 100%;
-    height: 100vh;
-    background-color:antiquewhite;
+    min-height: 100vh;
+    background-color: antiquewhite;
 }
+
 .element {
-    width:80%;
+    width: 80%;
     margin: auto;
-    padding-top:60px;
-}
-.top-row{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-    font-size:16px;
+    padding-top: 60px;
+    padding-bottom: 60px;
 }
 
-.left-text{
-    line-height:1.3;
-    font-weight:400;
+.top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-size: 16px;
+    gap: 24px;
 }
 
-.right-text{
-    font-size:16px;
-    color:#2b2929;
+.left-text {
+    line-height: 1.3;
+    font-weight: 400;
 }
 
-/* thin line under top text */
-.divider{
-    margin-top:10px;
-    border-bottom:1px solid #111010;
-    width:100%;
-    margin-bottom:40px;
+.right-text {
+    font-size: 16px;
+    color: #2b2929;
 }
 
-/* big middle paragraph */
-.big-text{
-    font-size:42px;
-    line-height:1.2;
-    font-weight:400;
-    width:80%;
-    margin:auto;
-    text-align:left;
+.divider {
+    margin-top: 10px;
+    border-bottom: 1px solid #111010;
+    width: 100%;
+    margin-bottom: 40px;
 }
-#page-3{
+
+.big-text {
+    font-size: 42px;
+    line-height: 1.2;
+    font-weight: 400;
+    width: 80%;
+    margin: auto;
+    text-align: left;
+}
+
+/* ========== PAGE 3 ========== */
+
+#page-3 {
     min-height: 100vh;
     width: 100%;
-    background-color:aliceblue;
-    justify-content: center;
+    background-color: aliceblue;
 }
-.top-text{
+
+.top-text {
     text-align: center;
     padding-top: 10vh;
-    
 }
-.top-text h4{
+
+.top-text h4 {
     padding: 40px;
     font-size: 20px;
     font-weight: 500;
     margin-bottom: -2vw;
 }
-.top-text h2{
-   text-align: center;
-   font-weight: 300;
+
+.top-text h2 {
+    text-align: center;
+    font-weight: 300;
     font-size: 50px;
 }
-.top-text h4 span{
-    background-color: rgb(22, 21, 21);
+
+.top-text h4 span {
+    background-color: #161515;
     color: white;
     font-size: small;
     padding: 5px 10px;
     border-radius: 20px;
 }
-.page3-element{
-    height: 80vh;
+
+.page3-element {
+    min-height: 60vh;
     padding: 30px;
     width: 100%;
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: space-between;
+    gap: 24px;
     margin-top: 7vw;
 }
 
-.page3-element .box{
-    height: 110%;
-    width: 32.5%;
+.page3-element .box {
+    flex: 1 1 0;
     border-radius: 10px;
-    
     position: relative;
+    overflow: hidden;
 }
-.page3-element .box video{
-     border-radius: 10px;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    object-position: center;
 
-}
-.page3-element .box img{
-     border-radius: 10px;
+.page3-element .box video,
+.page3-element .box img {
+    border-radius: 10px;
     height: 100%;
     width: 100%;
     object-fit: cover;
     object-position: center;
-    transition: all 1s ease;
-    position: absolute;
 }
-.page3-element .box:hover img{
+
+.page3-element .box img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all 1s ease;
+}
+
+.page3-element .box:hover img {
     opacity: 0;
 }
- #page4 {
+
+/* ========== PAGE 4 ========== */
+
+#page4 {
     margin-top: 100px;
-    width:100%;
-    height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    position:relative;
-    overflow:hidden;
-  }
+    width: 100%;
+    height: 100vh;
+    max-height: 900px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
 
-  /* background video: use the path your project expects */
-  /* If your dev server serves /mnt/data/... use that; otherwise keep ./video/... */
-  #page4 video {
-    position:absolute;
-    height:100%;
-    object-fit:cover;
-    z-index:0;
-  }
+#page4 video {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
 
-  .svg-wrap {
-    position:relative;
-    width:min(30vw,420px);
-    height:min(30vw,420px);
-    z-index:5;
-    pointer-events:none;
-    display:block;
-  }
+.svg-wrap {
+    position: relative;
+    width: min(30vw, 420px);
+    height: min(30vw, 420px);
+    z-index: 5;
+    pointer-events: none;
+    display: block;
+}
 
-  .svg-wrap svg { width:100%; height:100%; display:block; }
+.svg-wrap svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
 
-  /* ring CSS animation still present but NOT necessary for dot orbit */
-  .ring-rot { animation: spinRing 8s linear infinite; }
-  @keyframes spinRing { from{transform:rotate(-90deg)} to{transform:rotate(270deg)} }
+.ring-rot {
+    animation: spinRing 8s linear infinite;
+}
 
-  /* small visual helpers (optional) */
-  circle{ vector-effect: non-scaling-stroke; }
-  @media (prefers-reduced-motion: reduce) {
-    .ring-rot { animation: none; }
-  }
+@keyframes spinRing {
+    from {
+        transform: rotate(-90deg);
+    }
+    to {
+        transform: rotate(270deg);
+    }
+}
+
+circle {
+    vector-effect: non-scaling-stroke;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ring-rot {
+        animation: none;
+    }
+}
 
 .dash-animate {
-          stroke-dasharray:302;
-          stroke-dashoffset:400;
-          animation:dashAnim 2.8s ease-in-out infinite;
-        }
-        .dash-animate.delay { animation-delay:0.3s; }
-        @keyframes dashAnim {
-          0%{stroke-dashoffset:400}
-          50%{stroke-dashoffset:100}
-          100%{stroke-dashoffset:400}
-        }
+    stroke-dasharray: 302;
+    stroke-dashoffset: 400;
+    animation: dashAnim 2.8s ease-in-out infinite;
+}
 
-.circleBlack{
+.dash-animate.delay {
+    animation-delay: 0.3s;
+}
+
+@keyframes dashAnim {
+    0% {
+        stroke-dashoffset: 400;
+    }
+    50% {
+        stroke-dashoffset: 100;
+    }
+    100% {
+        stroke-dashoffset: 400;
+    }
+}
+
+.circleBlack {
     width: 80px;
     height: 80px;
-    background: #131212;   /* circle color */
+    background: #131212;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -263,60 +381,63 @@ nav h3 {
     position: absolute;
     left: 0;
     top: 0;
-    transform: translate(-50%,-50%) scale(0); /* start hidden & centered at coords */
-    pointer-events: none; /* IMPORTANT: let mouse events pass through */
+    transform: translate(-50%, -50%) scale(0);
+    pointer-events: none;
     opacity: 0;
     will-change: transform, left, top;
-  }
-#page5{
-    width: 100%;
-    height: 100vh;
-    background-color: aliceblue;
 }
-.page5-top{
+
+/* ========== PAGE 5 ========== */
+
+#page5 {
+    width: 100%;
+    min-height: 100vh;
+    background-color: aliceblue;
+    padding-bottom: 60px;
+    position: relative;
+}
+
+.page5-top {
     padding-top: 75px;
-    
     font-size: 40px;
     width: 96%;
-    margin-left: 2%;
-   font-family: rejouice;
-   font-weight: 100;
-   border-bottom: 2px solid black;
+    margin: 0 auto;
+    font-family: rejouice;
+    font-weight: 100;
+    border-bottom: 2px solid black;
+    padding-bottom: 20px;
 }
 
-.swiper-page{
-    width: 130%;
-    height: 70vh;
-   position: absolute;
+.swiper-page {
+    width: 100%;
+    height: auto;
+    position: relative;
+    margin-top: 40px;
 }
- .swiper {
-    margin-top: -2vw;
-      width: 100%;
-      height: 100%;
-    }
 
-    .swiper-slide {
-        width: 400px;
-      text-align: center;
-      font-size: 18px;
-      
-      display: flex;
-      justify-content: space-evenly;
-      align-items: flex-end;
-    }
+.swiper {
+    width: 100%;
+    height: 100%;
+}
 
-    .swiper-slide img {
-      display: block;
-      width: 19%;
-      object-fit: cover;
-    }
+.swiper-slide {
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    padding: 20px 0;
+}
 
-    .swiper {
-      margin-left: auto;
-      margin-right: auto;
-    }
+.swiper-slide img {
+    display: block;
+    width: 19%;
+    max-width: 220px;
+    object-fit: cover;
+}
 
-
+/* ========== LOADER ========== */
 
 #loader {
     position: fixed;
@@ -332,9 +453,176 @@ nav h3 {
     justify-content: center;
     align-items: center;
 }
+
 #loader h3 {
     font-family: rejouice;
     font-size: 42px;
     font-weight: 400;
-    
+}
+
+/* ========== RESPONSIVE ========== */
+
+/* Small nav dropdown full-width on very small screens */
+@media (max-width: 600px) {
+    #slide-bar {
+        right: 0;
+        left: 0;
+        width: auto;
+        margin: 0 12px;
+    }
+}
+
+/* Tablets and below (<= 1024px) */
+@media (max-width: 1024px) {
+
+    nav {
+        padding: 20px 16px;
+        font-size: 18px;
+    }
+
+    .element {
+        width: 88%;
+    }
+
+    .big-text {
+        width: 100%;
+        font-size: 32px;
+    }
+
+    .top-text h2 {
+        font-size: 38px;
+    }
+
+    .page3-element {
+        padding-inline: 20px;
+        gap: 16px;
+    }
+
+    #page4 {
+        height: 80vh;
+    }
+
+    .page5-top {
+        font-size: 32px;
+    }
+}
+
+/* Tablets & large phones (<= 768px) */
+@media (max-width: 768px) {
+
+    .main-content h1 span {
+        font-size: 22vw;
+        line-height: 23vw;
+    }
+
+    .top-row {
+        flex-direction: column;
+        font-size: 14px;
+    }
+
+    .right-text {
+        font-size: 14px;
+    }
+
+    .big-text {
+        font-size: 26px;
+        line-height: 1.4;
+    }
+
+    .top-text h4 {
+        padding: 24px;
+        font-size: 16px;
+    }
+
+    .top-text h2 {
+        font-size: 32px;
+    }
+
+    .page3-element {
+        flex-direction: column;
+        margin-top: 40px;
+    }
+
+    .page3-element .box {
+        height: 260px;
+    }
+
+    #page4 {
+        margin-top: 60px;
+        height: 70vh;
+    }
+
+    .svg-wrap {
+        width: 55vw;
+        height: 55vw;
+    }
+
+    .page5-top {
+        font-size: 26px;
+        padding-top: 40px;
+    }
+
+    .swiper-slide {
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .swiper-slide img {
+        width: 26vw;
+        max-width: 160px;
+    }
+}
+
+/* Phones (<= 480px) */
+@media (max-width: 480px) {
+
+    nav {
+        padding: 16px 12px;
+        font-size: 16px;
+    }
+
+    nav h3:first-child {
+        max-width: 55%;
+        font-size: 14px;
+    }
+
+    .main-content h1 {
+        bottom: 4px;
+    }
+
+    .element {
+        width: 90%;
+        padding-top: 40px;
+    }
+
+    .big-text {
+        font-size: 22px;
+    }
+
+    .top-text h2 {
+        font-size: 26px;
+    }
+
+    #page4 {
+        height: 60vh;
+    }
+
+    .svg-wrap {
+        width: 65vw;
+        height: 65vw;
+    }
+
+    .page5-top {
+        font-size: 22px;
+    }
+
+    .swiper-slide img {
+        width: 32vw;
+    }
+
+    /* hide custom cursor circles on touch devices for better UX */
+    .circle,
+    .circleBlack {
+        display: none;
+    }
 }
